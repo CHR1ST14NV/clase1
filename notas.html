@@ -45,7 +45,27 @@
 
     <h2><a href="https://dom.spec.whatwg.org/">DOM (Document Object Model)</a></h2>
     <p>El DOM es una interfaz que permite a los programadores interactuar con los documentos HTML y XML. Representa la estructura del documento como un árbol de nodos, donde cada parte del documento (como elementos, atributos o texto) es un nodo que puede ser manipulado. Con JavaScript, puedes modificar dinámicamente los contenidos y la apariencia de una página web sin necesidad de recargarla, mejorando la interactividad.</p>
+    <br>
+    <h2>Formulario de ejemplo</h2>
 
+    <form id="miFormulario" action="" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br><br>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <p id="mensaje"></p>
+
+    <script>
+        const formulario = document.getElementById('miFormulario');
+        const mensaje = document.getElementById('mensaje');
+        formulario.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const nombre = document.getElementById('nombre').value;
+            mensaje.innerHTML = `¡Hola, ${nombre}! Tu formulario ha sido enviado correctamente.`;
+        });
+    </script>
+    <br>
     <h2>Desarrollo del lado del cliente</h2>
     <p>el encargado de interpretar el lenguaje de programacion y presentar el resultado</p>
     <ul>
@@ -55,5 +75,35 @@
     </ul>
 
     <h2>Desarrollo del lado del servidor</h2>
+    <p>Aplicaciones que nos sirven para que la computadora se vuelva un servidor web</p>
+    <ul>
+        <li>IIS</li>
+        <li>APACHE</li>
+        <li>Nginx</li>
+        <li>Tomcat (JAVA)</li>
+        <li>Glassfish (JAVA)</li>
+    </ul>
+
+    <h2>Entornos de Diseño</h2>
+    <p>Vscode,Netbeans,Notepad,Dreamweaver</p>
+
+    <h2>Navegadores</h2>
+    <p>Netscape,IE,Firefox,Chrome,Opera,Safari,Edge,Vivaldi,Brave</p>
+
+    <h2>Protocolo HTTP</h2>
+    <p>HTTP (Hypertext Transfer Protocol) es el protocolo utilizado para solicitar y recibir páginas web desde un servidor, independientemente de su contenido.</p>
+    <p>La versión más reciente de HTTP es la 2.0.</p>
+    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240529150129/HTTP-.gif" alt="Representación gráfica de HTTP">
+
+    <ul>
+        <li>Se construye sobre el protocolo <strong>TCP</strong>.</li>
+        <li>Es un protocolo <strong>sin estado</strong>, lo que significa que no guarda información sobre las solicitudes anteriores.</li>
+        <li>Permite la transferencia de objetos multimedia, como imágenes, videos, y audios.</li>
+        <li>Las solicitudes se realizan mediante <strong>URI</strong> (Uniform Resource Identifier).</li>
+        <li>Utiliza la codificación <strong>US-ASCII</strong> de 7 bits para la transmisión de datos.</li>
+        <li>De los 7 métodos de solicitud disponibles, solo los métodos <strong>HEAD</strong> y <strong>GET</strong> son requeridos por el servidor.</li>
+    </ul>
+
+    <p>HEAD es para el contenido, para las etiquetas es otra cosa</p>
 </body>
 </html>
