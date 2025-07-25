@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LABORATORIO #1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div>LIBROS</div>
+    </nav>
+
+    <main>
+        <form action="" method="post">
+            <h1>Ingreso de Datos de Libros</h1>
+
+            <div class="form">
+                <label for="name">Nombre del Libro:</label>
+                <input type="text" id="name" value="Crimen y Castigo" placeholder="Ingrese Su Libro"> 
+            </div>
+
+            <div class="form">
+                <label for="abstract">Abstract:</label>
+                <textarea id="abstract" placeholder="Ingrese un Pequeño Resumen del Libro, Puede ser la Descripción de la Contraportada."></textarea>
+            </div>
+
+            <div class="form">
+                <label for="descrip">Descriptores:</label>
+                <textarea id="descrip" placeholder="Creado por Christian Velasquez"></textarea>
+            </div>
+
+            <div class="form">
+                <label for="pass">Su Contrase&ntilde;a:</label>
+                <input type="password" id="pass" placeholder="Ingrese Su Contrase&ntilde;a">
+            </div>
+
+            <div class="form checkbox">
+                <div class="group">
+                    <input type="checkbox" id="cbh" checked>
+                    <label for="cbh">Habilitado</label>
+                </div> 
+            </div>
+
+            <div class="form">
+                <label>Tipo de Pasta:</label>
+                <div class="group">
+                    <input type="radio" name="pasta" id="suave" value="Suave">
+                    <label for="suave">Suave</label>
+                    <input type="radio" name="pasta" id="dura" value="Dura"z>
+                    <label for="dura">Dura</label>
+                    <input type="radio" name="pasta" id="empastado"value="Empastado">
+                    <label for="empastado">Empastado</label>
+                </div>
+            </div>
+
+            <div class="form">
+                <label>Procedencia:</label>
+                <div class="group">
+                    <input type="radio" id="donacion" name="procedencia" value="Donación">
+                    <label for="donacion">Donación</label>
+                    <input type="radio" id="remesa" name="procedencia" value="Remesa">
+                    <label for="remesa">Remesa</label>
+                    <input type="radio" id="prestamo" name="procedencia" value="Préstamo">
+                    <label for="prestamo">Préstamo</label>
+                </div>
+            </div>
+
+            <div class="img">
+                <input type="file" id="imagen">
+            </div>
+
+            <div class="form">
+                <label for="idate">Fecha de Ingreso: </label>
+                <input type="date" name="idate" id="idate">
+            </div>
+
+            <div class="buttons">
+                <button type="button">Guardar</button>
+                <button type="button">Salir</button>
+                <button type="button">Guardar y Salir</button>
+                <button type="reset">Cancelar</button>
+                <button type="submit">Guardar y Nuevo</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <form action="" method="post">
+            <table border="1">
+                <tr>
+                    <td rowspan="12">
+                        <h2>L <br></h2>
+                        <h2>I <br></h2>
+                        <h2>B <br></h2>
+                        <h2>R <br></h2>
+                        <h2>O <br></h2>
+                        <h2>S <br></h2>
+                    </td>
+                    <td colspan="3">
+                        <h1>Ingreso de Datos</h1>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="name2">Nombre del Libro</label>
+                    </td>
+                    <td colspan="2">
+                        <input type="text" name="name2" id="name2">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="abstrtact2">Abstract</label>
+                    </td>
+                    <td colspan="2">
+                        <textarea id="abstract2" placeholder="Ingrese un Pequeño Resumen del Libro, Puede ser la Descripción de la Contraportada."></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="descrip2">Descriptores:</label>
+                    </td>
+                    <td colspan="2">
+                        <textarea id="descrip2" placeholder="Creado por Christian Velasquez"></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="pass2">Su Contrase&ntilde;a:</label>
+                    </td>
+                    <td colspan="2">
+                        <input type="password" id="pass2" placeholder="Ingrese Su Contrase&ntilde;a">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox" id="cbh" checked>
+                    </td>
+                    <td colspan="2">
+                        <label for="cbh">Habilitado</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Tipo de Pasta:</label>
+                    </td>
+                    <td colspan="2">
+                        <input type="radio" name="pasta" id="suave" value="Suave">
+                        <label for="suave">Suave</label>
+                        <input type="radio" name="pasta" id="dura" value="Dura"z>
+                        <label for="dura">Dura</label>
+                        <input type="radio" name="pasta" id="empastado"value="Empastado">
+                        <label for="empastado">Empastado</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Procedencia:</label>
+                    </td>
+                    <td colspan="2">
+                        <input type="radio" id="donacion" name="procedencia" value="Donación">
+                        <label for="donacion">Donación</label>
+                        <input type="radio" id="remesa" name="procedencia" value="Remesa">
+                        <label for="remesa">Remesa</label>
+                        <input type="radio" id="prestamo" name="procedencia" value="Préstamo">
+                        <label for="prestamo">Préstamo</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="3">
+                        <input type="file" id="imagen">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="idate">Fecha de Ingreso: </label>
+                    </td>
+                    <td colspan="2">
+                        <input type="date" name="idate" id="idate">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="1">
+                        <button type="button">Guardar</button>
+                        <button type="button">Salir</button>
+                    </td>
+                    <td colspan="1">
+                        <button type="button">Guardar y Salir</button>
+                        <button type="reset">Cancelar</button>
+                    </td>
+                    <td colspan="1">
+                        <button type="submit">Guardar y Nuevo</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </footer>
+</body>
+</html>
