@@ -1,0 +1,20 @@
+body{
+    background-color: lightslategray;
+}
+
+header{
+    text-align: center;
+}
+
+h1{ 
+    color: red;
+}
+
+img{
+    width: 30%;
+}
+
+span{
+    font-size: 3em;
+}
+
