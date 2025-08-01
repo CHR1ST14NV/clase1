@@ -1,0 +1,229 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: grid;
+  grid-template-areas: "header header header" "nav main aside";
+  grid-template-columns: 20% 55% 25%;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* ---------------- LOGO TITULO SEARCH ---------------- */
+header {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 20% 55% 25%;
+  align-items: center;
+  border: 1px solid #000;
+  padding: 10px;
+}
+header .cLogo img {
+  width: 207px;
+  height: 101px;
+  border: 1px solid #000;
+  display: block;
+  margin: 0 auto;
+}
+header .cTitulo {
+  text-align: center;
+  border: 1px solid #000;
+  padding: 10px;
+}
+header .cTitulo h1 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+header .cTitulo p {
+  font-size: 14px;
+}
+header .search {
+  margin-left: 10px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  padding: 45px;
+}
+header .search input {
+  width: 80%;
+  padding: 5px;
+  border: 1px solid #000;
+  margin-right: 5px;
+}
+header .search button {
+  padding: 5px;
+  border: 1px solid #000;
+  background: white;
+  cursor: pointer;
+}
+
+/* ---------------- MENÚ LATERAL ---------------- */
+nav {
+  grid-area: nav;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #000;
+  height: 100%;
+  align-self: stretch;
+}
+nav .menu {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+nav .menu h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+nav .menu ul {
+  list-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+nav .menu ul li {
+  margin: 10px 0;
+}
+nav .menu ul li a {
+  text-decoration: none;
+  color: black;
+}
+nav .menu ul li a:hover {
+  text-decoration: underline;
+}
+nav .menu:last-child {
+  border-bottom: none;
+}
+
+/* ---------------- CONTENIDO PRINCIPAL ---------------- */
+main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid #000;
+  padding: 10px;
+}
+main .caja {
+  border: 1px solid #000;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: white;
+}
+main .caja h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+main .caja p {
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: justify;
+}
+main .pie {
+  border: 1px solid #000;
+  padding: 15px;
+  margin-top: auto;
+  width: 100%;
+  text-align: center;
+  background: white;
+}
+main .pie h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+main .pie p {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* ---------------- NOTICIAS ---------------- */
+aside {
+  grid-area: aside;
+  margin-right: 20px;
+  border: 1px solid #000;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  align-self: stretch;
+}
+aside .noticias {
+  flex: 1;
+}
+aside .noticias h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+aside .noticias p {
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+@media screen and (min-width: 400px) and (max-width: 1000px) {
+  body {
+    display: grid;
+    grid-template-areas: "header" "nav" "main" "aside";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+  }
+  header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  header .cLogo img {
+    width: 105px;
+    height: 105px;
+  }
+  header .search {
+    flex-direction: row;
+    padding: 10px;
+  }
+  header .search input {
+    width: 70%;
+  }
+  nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  nav .menu {
+    width: 50%;
+    border-bottom: 1px solid #000;
+  }
+  nav .menu:last-child {
+    border-bottom: 1px solid #000;
+  }
+  nav .menu ul {
+    flex-direction: column;
+  }
+  main {
+    order: 3;
+  }
+  main .caja {
+    margin-bottom: 10px;
+  }
+  main .pie {
+    margin-top: 10px;
+  }
+  aside {
+    order: 4;
+    margin: 0;
+  }
+}/*# sourceMappingURL=styles.css.map */

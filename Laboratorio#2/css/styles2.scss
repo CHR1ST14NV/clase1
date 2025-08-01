@@ -1,0 +1,275 @@
+$primary-color: #1e3a8a;
+$secondary-color: #2563eb;
+$accent-color: #f59e0b;
+$text-color: #333;
+$background-color: #f8fafc;
+$white: #ffffff;
+$border-radius: 8px;
+$transition-speed: 0.3s;
+$shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    display: grid;
+    grid-template-areas: "header header header" "nav main aside";
+    grid-template-columns: 20% 55% 25%;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+    gap: 15px;
+    padding: 15px;
+    background: $background-color;
+    color: $text-color;
+}
+
+// ---------------- LOGO TITULO SEARCH ----------------
+header {
+    position: sticky;
+    margin-right: 30px;
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 20% 55% 25%;
+    align-items: center;
+    background: $white;
+    border-radius: $border-radius;
+    box-shadow: $shadow;
+    padding: 15px;
+    transition: transform $transition-speed ease;
+    &:hover {
+        transform: scale(1.01);
+    }
+    .cLogo img {
+        width: 200px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        transition: transform $transition-speed;
+        &:hover {
+            transform: rotate(-3deg) scale(1.05);
+        }
+    }
+    .cTitulo {
+        text-align: center;
+        padding: 10px;
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: $primary-color;
+            transition: color $transition-speed;
+            &:hover {
+                color: $secondary-color;
+            }
+        }
+        p {
+            font-size: 0.95rem;
+            color: darken($text-color, 20%);
+        }
+    }
+    .search {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: lighten($secondary-color, 45%);
+        border-radius: $border-radius;
+        padding: 10px;
+        input {
+            width: 75%;
+            padding: 8px;
+            border: 1px solid lighten($primary-color, 30%);
+            border-radius: $border-radius;
+            outline: none;
+            transition: box-shadow $transition-speed;
+            &:focus {
+                box-shadow: 0 0 5px $secondary-color;
+            }
+        }
+        button {
+            padding: 8px 12px;
+            margin-left: 8px;
+            border: none;
+            border-radius: $border-radius;
+            background: $secondary-color;
+            color: $white;
+            cursor: pointer;
+            transition: background $transition-speed, transform $transition-speed;
+            &:hover {
+                background: darken($secondary-color, 10%);
+                transform: translateY(-2px);
+            }
+        }
+    }
+}
+
+// ---------------- MENU ----------------
+nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+    background: $white;
+    border-radius: $border-radius;
+    box-shadow: $shadow;
+    padding: 20px;
+    .menu {
+        flex: 1;
+        text-align: center;
+        h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: $primary-color;
+        }
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            li {
+                a {
+                    text-decoration: none;
+                    color: $text-color;
+                    font-weight: bold;
+                    padding: 10px;
+                    display: block;
+                    border-radius: $border-radius;
+                    transition: background $transition-speed, color $transition-speed;
+                    &:hover {
+                        background: $secondary-color;
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ---------------- TEMAS PRINCIPALES / FOOTER ----------------
+main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    background: $white;
+    border-radius: $border-radius;
+    box-shadow: $shadow;
+    padding: 20px;
+    .caja {
+        background: lighten($white, 2%);
+        border-radius: $border-radius;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: $shadow;
+        transition: transform $transition-speed;
+        &:hover {
+            transform: translateY(-3px);
+        }
+        h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: $primary-color;
+        }
+        p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: justify;
+        }
+    }
+    .pie {
+        margin-top: auto;
+        text-align: center;
+        padding: 20px;
+        background: lighten($secondary-color, 45%);
+        border-radius: $border-radius;
+        box-shadow: $shadow;
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: $secondary-color;
+        }
+        p {
+            font-size: 0.9rem;
+            color: $text-color;
+        }
+    }
+}
+
+// ---------------- NOTICIAS ----------------
+aside {
+    margin-right: 30px;
+    grid-area: aside;
+    background: $white;
+    border-radius: $border-radius;
+    box-shadow: $shadow;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    .noticias {
+        flex: 1;
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: $accent-color;
+        }
+        p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            text-align: justify;
+            transition: transform $transition-speed;
+            &:hover {
+                transform: translateX(5px);
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 1000px) {
+    body {
+        display: grid;
+        grid-template-areas: "header" "nav" "main" "aside";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+    }
+    header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        .cLogo img {
+            width: 105px;
+            height: 105px;
+        }
+        .search {
+            flex-direction: row;
+            padding: 10px;
+            input {
+                width: 70%;
+            }
+        }
+    }
+    nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        .menu {
+            width: 50%;
+            border-bottom: 1px solid #000;
+            &:last-child {
+                border-bottom: 1px solid #000;
+            }
+            ul {
+                flex-direction: column;
+            }
+        }
+    }
+    main {
+        order: 3;
+        .caja {
+            margin-bottom: 10px;
+        }
+        .pie {
+            margin-top: 10px;
+        }
+    }
+    aside {
+        order: 4;
+        margin: 0;
+    }
+}
