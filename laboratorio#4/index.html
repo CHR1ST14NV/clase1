@@ -1,26 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>REGISTRO</title>
-    <link rel="stylesheet" href="style.scss">
-    <script src="fn.js"></script>
+    <script defer src="fn.js"></script>
 </head>
 
 <body>
-    <h1>VALIDACION DE DPI</h1>
-    <form action="index.html" method="post">
+    <h1>VALIDACIÓN DE DPI</h1>
+
+    <form id="formDPI" action="index.html" method="post">
         <label for="cui">Ingrese su DPI</label>
-        <input type="number" name="cui" id="cui" onchange="this.validarCUI">
-        <br>
-        <br>
+        <input type="text" name="cui" id="cui" placeholder="13 dígitos" required />
+        <br><br>
         <label for="status">Estado de DPI</label>
-        <input type="text" name="status" id="status">
-        <br>
-        <br>
-        <button>Validar DPI</button>
+        <input type="text" name="status" id="status" />
+        <br><br>
+        <button type="button" id="btnValidar">Validar DPI</button>
         <input type="submit" id="btnsend" value="Enviar">
     </form>
 </body>

@@ -1,8 +1,3 @@
-//@Autor CV593
-
-//@Descripcion Clase para validar CUI 
-
-//Aca validamos los ultimos 4 digitos de nuesto DPI
 function validarDM(dm) {
     let rt = false;
     let arrDM = ["0101", "0102", "0103", "0104", "0105", "0106", "0107", "0108", "0109", "0110", "0111", "0112", "0113", "0114", "0115", "0116",
@@ -30,18 +25,17 @@ function validarDM(dm) {
     ];
 
     for (let i = 0; i < arrDM.length; i++) {
-        if (arrDM[i] = l4d) {
+        if (Number(arrDM[i]) === dm) {
             rt = true;
+            break;
         }
     }
     return rt;
 }
 
-//Aca validamos los 13 digitos del CUI
 function validarCUI(cui) {
-    alert("Prueba");
     let n1, n2, n3, n4, n5, n6, n7, n8, n9, dm;
-    if (cui.length == 13 && Number.isInteger(cui) == true) {
+    if (cui.length == 13 && Number.isInteger(Number(cui)) == true) {
         n1 = parseInt(cui.charAt(0));
         n2 = parseInt(cui.charAt(1));
         n3 = parseInt(cui.charAt(2));
@@ -51,17 +45,27 @@ function validarCUI(cui) {
         n7 = parseInt(cui.charAt(6));
         n8 = parseInt(cui.charAt(7));
         n9 = parseInt(cui.charAt(8));
-        dm = parseInt(cui.subString(9, 13));
-        op = (((n1 * 9) + (n2 * 8) + (n3 * 7) + (n4 * 6) + (n5 * 5) + (n6 * 4) + (n7 * 3) + (n8 * 2))) * 10;
-        res = op % 11;
+        dm = parseInt(cui.substring(9, 13));
+
+        let op = (((n1 * 9) + (n2 * 8) + (n3 * 7) + (n4 * 6) + (n5 * 5) + (n6 * 4) + (n7 * 3) + (n8 * 2))) * 10;
+        let res = op % 11;
+
         if (n9 == res && validarDM(dm)) {
-            document.getElementById("cui").value = "El CUI ingresado es Valido";
+            document.getElementById("status").value = "El CUI ingresado es Valido";
             document.getElementById("btnsend").setAttribute("style", "display : block");
         } else {
-            document.getElementById("cui").value = "El CUI ingresado es NO Valido";
+            document.getElementById("status").value = "El CUI ingresado es NO Valido";
             document.getElementById("btnsend").setAttribute("style", "display : none");
         }
     } else {
         alert("EL VALOR DEBE DE SER NUMERICO Y NO MAYOR A 13 DIGITOS");
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("btnsend").setAttribute("style", "display : none");
+    document.getElementById("btnValidar").addEventListener("click", function() {
+        const valor = document.getElementById("cui").value;
+        validarCUI(valor);
+    });
+});
