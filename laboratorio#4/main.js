@@ -2,9 +2,10 @@
 
 //@Descripcion Clase para validar CUI 
 
-function validarL4D(l4d) {
+//Aca validamos los ultimos 4 digitos de nuesto DPI
+function validarDM(dm) {
     let rt = false;
-    var last4digits = ["0101", "0102", "0103", "0104", "0105", "0106", "0107", "0108", "0109", "0110", "0111", "0112", "0113", "0114", "0115", "0116",
+    let arrDM = ["0101", "0102", "0103", "0104", "0105", "0106", "0107", "0108", "0109", "0110", "0111", "0112", "0113", "0114", "0115", "0116",
         "0117", "0201", "0202", "0203", "0204", "0205", "0206", "0207", "0208", "0301", "0302", "0303", "0304", "0305", "0306", "0307",
         "0308", "0309", "0310", "0311", "0312", "0313", "0314", "0315", "0316", "0401", "0402", "0403", "0404", "0405", "0406", "0407",
         "0408", "0409", "0410", "0411", "0412", "0413", "0414", "0415", "0416", "0501", "0502", "0503", "0504", "0505", "0506", "0507",
@@ -28,10 +29,38 @@ function validarL4D(l4d) {
         "2213", "2214", "2215", "2216", "2217"
     ];
 
-    for (let i = 0; i < last4digits.length; index++) {
-        if (last4digits = l4d) {
+    for (let i = 0; i < arrDM.length; i++) {
+        if (arrDM[i] = l4d) {
             rt = true;
         }
     }
     return rt;
+}
+
+//Aca validamos los 13 digitos del CUI
+function validarCUI(cui) {
+    let n1, n2, n3, n4, n5, n6, n7, n8, n9, dm;
+    if (cui.length == 13 && Number.isInteger(cui) == true) {
+        n1 = parseInt(cui.charAt(0));
+        n2 = parseInt(cui.charAt(1));
+        n3 = parseInt(cui.charAt(2));
+        n4 = parseInt(cui.charAt(3));
+        n5 = parseInt(cui.charAt(4));
+        n6 = parseInt(cui.charAt(5));
+        n7 = parseInt(cui.charAt(6));
+        n8 = parseInt(cui.charAt(7));
+        n9 = parseInt(cui.charAt(8));
+        dm = parseInt(cui.subString(9, 13));
+        op = (((n1 * 9) + (n2 * 8) + (n3 * 7) + (n4 * 6) + (n5 * 5) + (n6 * 4) + (n7 * 3) + (n8 * 2))) * 10;
+        res = op % 11;
+        if (n9 == res && validarDM(dm)) {
+            document.getElementById("cui").value = "El CUI ingresado es Valido";
+            document.getElementById("btnsend").setAttribute("style", "display = block");
+        } else {
+            document.getElementById("cui").value = "El CUI ingresado es NO Valido";
+            document.getElementById("btnsend").setAttribute("style", "display = none");
+        }
+    } else {
+        alert("EL VALOR DEBE DE SER NUMERICO Y NO MAYOR A 13 DIGITOS");
+    }
 }

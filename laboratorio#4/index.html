@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REGISTRO</title>
-    <script src="main.js"></script>
     <link rel="stylesheet" href="main.scss">
+    <script src="main.js"></script>
 </head>
 
 <body>
     <h1>VALIDACION DE DPI</h1>
     <form action="index.html" method="post">
         <label for="cui">Ingrese su DPI</label>
-        <input type="text" name="cui" id="cui">
+        <input type="number" name="cui" id="cui" onchange="this.validarCUI">
         <br>
         <br>
         <label for="status">Estado de DPI</label>
@@ -21,7 +21,7 @@
         <br>
         <br>
         <button>Validar DPI</button>
-        <input type="submit" value="Enviar">
+        <input type="submit" id="btnsend" value="Enviar">
     </form>
 </body>
 
