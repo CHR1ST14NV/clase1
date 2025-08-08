@@ -39,6 +39,7 @@ function validarDM(dm) {
 
 //Aca validamos los 13 digitos del CUI
 function validarCUI(cui) {
+    alert("Prueba");
     let n1, n2, n3, n4, n5, n6, n7, n8, n9, dm;
     if (cui.length == 13 && Number.isInteger(cui) == true) {
         n1 = parseInt(cui.charAt(0));
@@ -55,10 +56,10 @@ function validarCUI(cui) {
         res = op % 11;
         if (n9 == res && validarDM(dm)) {
             document.getElementById("cui").value = "El CUI ingresado es Valido";
-            document.getElementById("btnsend").setAttribute("style", "display = block");
+            document.getElementById("btnsend").setAttribute("style", "display : block");
         } else {
             document.getElementById("cui").value = "El CUI ingresado es NO Valido";
-            document.getElementById("btnsend").setAttribute("style", "display = none");
+            document.getElementById("btnsend").setAttribute("style", "display : none");
         }
     } else {
         alert("EL VALOR DEBE DE SER NUMERICO Y NO MAYOR A 13 DIGITOS");
