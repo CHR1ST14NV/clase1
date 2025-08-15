@@ -72,14 +72,16 @@ body {
 
 .brand {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 110px 1fr;
+    /* ancho fijo para logo */
     gap: var(--s);
     align-items: center;
+    margin-bottom: .25rem;
 }
 
 .logo {
-    width: 84px;
-    height: 84px;
+    width: 100px;
+    height: 100px;
     display: grid;
     place-items: center;
     border: 1px solid var(--line);
@@ -95,13 +97,8 @@ body {
 }
 
 .logo .img {
-    width: 64px;
+    width: 80px;
     height: auto;
-}
-
-.logo .note {
-    font-size: .8rem;
-    color: var(--tmuted);
 }
 
 .title {
@@ -126,8 +123,6 @@ body {
     display: grid;
     gap: .35rem;
 }
-
-.row {}
 
 .muted {
     color: var(--tmuted);
@@ -222,7 +217,7 @@ body {
 
 .thumb {
     position: relative;
-    height: 120px;
+    height: 170px;
     background: #dcdfe4;
     display: grid;
     place-items: center;
@@ -241,17 +236,21 @@ body {
     border-radius: 8px;
 }
 
-.icons {
+.text {
+    padding: .9rem;
+}
+
+.ibox {
     display: grid;
     gap: var(--s);
     justify-items: center;
     align-items: center;
-    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    grid-template-columns: repeat(2, minmax(110px, 1fr));
 }
 
 @media (min-width: 720px) {
-    .icons {
-        grid-template-columns: repeat(4, minmax(110px, 1fr));
+    .ibox {
+        grid-template-columns: repeat(4, minmax(120px, 1fr));
     }
 }
 
@@ -259,7 +258,7 @@ body {
     display: grid;
     place-items: center;
     width: 100%;
-    max-width: 120px;
+    max-width: 130px;
     aspect-ratio: 1 / 1;
     border: 1px solid var(--line);
     border-radius: 12px;
@@ -269,8 +268,8 @@ body {
 }
 
 .icon img {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     display: block;
     filter: grayscale(10%);
 }
@@ -279,4 +278,17 @@ body {
 .icon:focus {
     transform: translateY(-2px);
     box-shadow: 0 10px 24px rgba(0, 0, 0, .06);
+}
+
+.mid {
+    text-align: center;
+    color: var(--tmuted);
+    font-weight: 800;
+    grid-column: 1 / -1;
+}
+
+@media (min-width: 720px) {
+    .mid {
+        grid-column: 2 / span 2;
+    }
 }
