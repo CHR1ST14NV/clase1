@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Primer Examen Parcial</title>
+    <link rel="stylesheet" href="styles.scss" />
+</head>
+
+<body>
+
+    <div class="page">
+
+        <div class="grid" id="top">
+            <!-- LEFT -->
+            <div class="col left">
+                <div class="brand">
+                    <div class="logo" id="logo" role="button" aria-label="Agregar fecha al título">
+                        <img class="img" src="assets/arch.png" alt="Logo" />
+                        <div class="note">Logo</div>
+                    </div>
+                    <h1 id="title" class="title">Título del Sitio</h1>
+                </div>
+
+                <div class="card" id="student">
+                    <h3 class="head">Datos del estudiante</h3>
+                    <div class="list">
+                        <div class="row"><strong>Nombre:</strong> Christian Edilzar Emmanuel Velasquez Palacios</div>
+                        <div class="row"><strong>Carné:</strong> 090 - 22 - 7443</div>
+                    </div>
+                </div>
+
+                <div class="card" id="form">
+                    <h3 class="head">Registrar Información</h3>
+                    <div class="form">
+                        <div class="group">
+                            <label class="label" for="nombre">Nombre</label>
+                            <input class="input" id="nombre" type="text" placeholder="Nombre" />
+                        </div>
+
+                        <div class="group">
+                            <label class="label" for="apellido">Apellido</label>
+                            <input class="input" id="apellido" type="text" placeholder="Apellido" />
+                        </div>
+
+                        <div class="group">
+                            <label class="label" for="email">Email</label>
+                            <input class="input" id="email" type="email" placeholder="correo@ejemplo.com" />
+                        </div>
+
+                        <div class="group">
+                            <label class="label" for="nacimiento">Fecha de nacimiento</label>
+                            <input class="input" id="nacimiento" type="date" value="2025-08-14" />
+                        </div>
+
+                        <div class="group full">
+                            <label class="label" for="edad">Edad</label>
+                            <input class="input" id="edad" type="number" placeholder="18" min="0" />
+                        </div>
+
+                        <div class="actions">
+                            <button class="btn" type="button">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" id="about">
+                    <div class="muted">
+                        Párrafo de Footer Párrafo de Footer Párrafo de Footer Párrafo de Footer Párrafo de Footer.
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col right">
+                <div class="rhead">
+                    <h2 class="rtitle">Subtítulo Noticias</h2>
+                </div>
+
+                <div class="news" id="news">
+                    <div class="item">
+                        <div class="thumb">
+                            <img class="pic" src="" alt="Imagen de noticia 1" />
+                        </div>
+                        <div class="text">Párrafo de texto de noticias. Párrafo de texto de noticias.</div>
+                    </div>
+                    <div class="item">
+                        <div class="thumb">
+                            <img class="pic" src="" alt="Imagen de noticia 2" />
+                        </div>
+                        <div class="text">Párrafo de texto de noticias. Párrafo de texto de noticias.</div>
+                    </div>
+                    <div class="item">
+                        <div class="thumb">
+                            <img class="pic" src="" alt="Imagen de noticia 3" />
+                        </div>
+                        <div class="text">Párrafo de texto de noticias. Párrafo de texto de noticias.</div>
+                    </div>
+                    <div class="item">
+                        <div class="thumb">
+                            <img class="pic" src="" alt="Imagen de noticia 4" />
+                        </div>
+                        <div class="text">Párrafo de texto de noticias. Párrafo de texto de noticias.</div>
+                    </div>
+                </div>
+
+                <div class="ititle"><strong><u>Accesos directos en forma de íconos</u></strong></div>
+                <div class="icons">
+                    <a class="icon" href="#top" aria-label="Ir arriba">
+                        <img src="assets/cloud.svg" alt="Icono nube">
+                    </a>
+                    <a class="icon" href="#student" aria-label="Ir a datos">
+                        <img src="assets/calendar.svg" alt="Icono calendario">
+                    </a>
+                    <a class="icon" href="#form" aria-label="Ir a formulario">
+                        <img src="assets/camera.svg" alt="Icono cámara">
+                    </a>
+                    <a class="icon" href="#news" aria-label="Ir a noticias">
+                        <img src="assets/clock.svg" alt="Icono reloj">
+                    </a>
+                    <a class="icon" href="#about" aria-label="Ir a info">
+                        <img src="assets/eye.svg" alt="Icono ojo">
+                    </a>
+                    <a class="icon" href="#top" aria-label="Ir arriba">
+                        <img src="assets/medal.svg" alt="Icono medalla">
+                    </a>
+                    <a class="icon" href="#news" aria-label="Ir a noticias">
+                        <img src="assets/picture.svg" alt="Icono imagen">
+                    </a>
+                    <a class="icon" href="#form" aria-label="Ir a formulario">
+                        <img src="assets/settings.svg" alt="Icono ajustes">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
