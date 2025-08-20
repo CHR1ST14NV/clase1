@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Guía rápida de Web Components</title>
+    <style>
+         :root {
+            --bg: #0f172a;
+            --fg: #e2e8f0;
+            --muted: #94a3b8;
+            --brand: #38bdf8;
+        }
+        
+        html,
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Ubuntu, "Helvetica Neue", Arial;
+            background: var(--bg);
+            color: var(--fg);
+        }
+        
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 2rem;
+        }
+        
+        h1 {
+            font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+            margin: 0 0 .5rem
+        }
+        
+        p.lead {
+            color: var(--muted);
+            margin: .25rem 0 2rem
+        }
+        
+        section {
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 16px;
+            padding: 1.25rem 1.2rem;
+            margin: 1rem 0 1.25rem
+        }
+        
+        h2 {
+            margin: .2rem 0 1rem;
+            font-size: 1.25rem
+        }
+        
+        code,
+        pre {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        
+        pre {
+            background: #0b1220;
+            border: 1px solid rgba(255, 255, 255, .08);
+            padding: 1rem;
+            border-radius: 12px;
+            overflow: auto
+        }
+        
+        ul {
+            margin: .5rem 0 0 1.1rem;
+        }
+        
+        a {
+            color: var(--brand);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: .15rem .5rem;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 999px;
+            font-size: .8rem;
+            color: var(--muted);
+        }
+        
+        footer {
+            margin-top: 2rem;
+            color: var(--muted);
+            font-size: .95rem
+        }
+        
+        .ok {
+            color: #22c55e;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Web Components</h1>
+        <p class="lead">
+            Conjunto de tecnologías nativas del navegador para crear <strong>elementos reutilizables</strong> con HTML, CSS y JS encapsulados (sin frameworks).
+        </p>
+        <section>
+            <div class="grid">
+                <div>
+                    <span class="tag">Resumen</span>
+                    <ul>
+                        <li><strong>Custom Elements</strong>: define tus propias etiquetas HTML.</li>
+                        <li><strong>Shadow DOM</strong>: encapsula DOM y estilos.</li>
+                        <li><strong>Templates & Slots</strong>: plantillas declarativas y puntos de inserción.</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="tag">Ventajas</span>
+                    <ul>
+                        <li>Reutilización y composición.</li>
+                        <li>Aislamiento de estilos/JS.</li>
+                        <li>Interoperables con cualquier framework.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CUSTOM ELEMENTS -->
+        <section>
+            <h2>1) Custom Elements</h2>
+            <p>Registra una etiqueta personalizada (debe contener al menos un <em>guion</em>) y su clase asociada.</p>
+            <pre><code class="language-js">// my-greeting.js
+                class MyGreeting extends HTMLElement {
+                static get observedAttributes() { return ['name']; } // escucha cambios
+                constructor() {
+                    super();
+                    this.attachShadow({ mode: 'open' }); // crea shadow root
+                    this.shadowRoot.innerHTML = `
+                    &lt;style&gt;
+                        :host { display:inline-block; padding:.5rem .75rem; border-radius:12px; background:#111827; }
+                        .title { font-weight:600 }
+                    &lt;/style&gt;
+                    &lt;span class="title"&gt;👋 Hola, &lt;slot name="nombre"&gt;invitad@&lt;/slot&gt;!&lt;/span&gt;
+                    `;
+                }
+                connectedCallback() {
+                    // el elemento se añadió al DOM
+                    if (!this.hasAttribute('name')) this.setAttribute('name', 'invitad@');
+                }
+                attributeChangedCallback(name, oldV, newV) {
+                    if (name === 'name') {
+                    const n = document.createElement('span');
+                    n.setAttribute('slot','nombre');
+                    n.textContent = newV;
+                    this.append(n);
+                    }
+                }
+                }
+                customElements.define('my-greeting', MyGreeting);
+            </code></pre>
+
+            <pre><code class="language-html">&lt;!-- Uso en HTML --&gt;
+                &lt;my-greeting name="Christian"&gt;&lt;/my-greeting&gt;
+                &lt;script type="module" src="./my-greeting.js"&gt;&lt;/script&gt;
+            </code></pre>
+
+            <ul>
+                <li>Registro: <code>customElements.define('my-tag', Clase)</code>.</li>
+                <li><em>Lifecycle callbacks</em>: <code>connectedCallback</code>, <code>disconnectedCallback</code>, <code>attributeChangedCallback</code>.</li>
+                <li><em>observedAttributes</em>: declara qué atributos quieres observar.</li>
+            </ul>
+        </section>
+
+        <!-- SHADOW DOM -->
+        <section>
+            <h2>2) Shadow DOM</h2>
+            <p>Encapsula el árbol DOM de un componente y sus estilos para que no colisionen con el resto de la página.</p>
+            <pre>
+                <code class="language-js">const host = document.querySelector('my-greeting');
+                // 'open' permite acceder via element.shadowRoot; 'closed' oculta la referencia.
+                const shadow = host.attachShadow({ mode: 'open' }); // normalmente lo haces en el constructor
+                </code>
+            </pre>
+            <ul>
+                <li><strong>Shadow host</strong>: el elemento que “porta” el Shadow DOM.</li>
+                <li><strong>Shadow root</strong>: nodo raíz del árbol encapsulado.</li>
+                <li><strong>Boundary</strong>: frontera entre DOM “de luz” (light DOM) y Shadow DOM.</li>
+            </ul>
+            <h3>Estilos desde dentro del shadow</h3>
+            <pre>
+                <code class="language-css">:host { display:block; }            /* estilos del host (la etiqueta custom) */
+                :host([variant="primary"]) { /* variantes por atributo */ }
+                ::slotted(img) { border-radius: 8px; }   /* estiliza contenido insertado en &lt;slot&gt; */
+                </code>
+            </pre>
+
+            <h3>Exponer partes para ser estilizadas desde fuera</h3>
+            <p>Marca nodos internos con <code>part</code> y permite que el consumidor los estilice con <code>::part()</code>.</p>
+            <pre><code class="language-html">&lt;style&gt; /* dentro del componente */
+                &lt;div part="badge"&gt;Nuevo&lt;/div&gt;
+                &lt;/style&gt;
+            </code></pre>
+            <pre><code class="language-css">/* consumidor de tu componente */
+                my-greeting::part(badge) { background: rebeccapurple; color:white; }
+            </code></pre>
+        </section>
+
+        <!-- TEMPLATES & SLOTS -->
+        <section>
+            <h2>3) Templates &amp; Slots</h2>
+            <p><code>&lt;template&gt;</code> permite definir fragmentos HTML sin renderizar que luego puedes clonar; <code>&lt;slot&gt;</code> define puntos de inserción para contenido del usuario.</p>
+            <pre><code class="language-html">&lt;template id="card-tpl"&gt;
+                &lt;style&gt; :host { display:block; } .title { font-weight:700 } &lt;/style&gt;
+                &lt;div class="title"&gt;&lt;slot name="title"&gt;Título&lt;/slot&gt;&lt;/div&gt;
+                &lt;div class="body"&gt;&lt;slot&gt;Contenido…&lt;/slot&gt;&lt;/div&gt;
+                &lt;/template&gt;
+            </code></pre>
+            <pre><code class="language-js">const tpl = document.getElementById('card-tpl');
+                class UiCard extends HTMLElement {
+                constructor() {
+                    super();
+                    const root = this.attachShadow({mode:'open'});
+                    root.appendChild(tpl.content.cloneNode(true));
+                }
+                }
+                customElements.define('ui-card', UiCard);
+            </code></pre>
+            <pre><code class="language-html">&lt;ui-card&gt;
+                &lt;span slot="title"&gt;Hola&lt;/span&gt;
+                &lt;p&gt;Este es el contenido&lt;/p&gt;
+                &lt;/ui-card&gt;
+            </code></pre>
+        </section>
+
+        <!-- STYLESHEETS CONSTRUCTIBLES -->
+        <section>
+            <h2>4) Constructable Stylesheets (opcional avanzado)</h2>
+            <p>Comparte una misma hoja de estilos entre muchos componentes con <code>CSSStyleSheet</code> y <code>adoptedStyleSheets</code>.</p>
+            <pre><code class="language-js">const sheet = new CSSStyleSheet();
+                sheet.replaceSync(`:host{ display:block } .title{ font-weight:700 }`);
+                class FancyTitle extends HTMLElement {
+                constructor(){
+                    super();
+                    const root = this.attachShadow({mode:'open'});
+                    root.adoptedStyleSheets = [sheet]; // reutilizable entre instancias
+                    root.innerHTML = `&lt;div class="title"&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/div&gt;`;
+                }
+                }
+                customElements.define('fancy-title', FancyTitle);
+            </code></pre>
+            <p class="ok">Soporta navegadores modernos; considera un <em>polyfill</em> si necesitas compatibilidad amplia.</p>
+        </section>
+
+        <!-- BUENAS PRÁCTICAS -->
+        <section>
+            <h2>5) Buenas prácticas</h2>
+            <ul>
+                <li>Prefiere <code>type="module"</code> y organiza tu componente en un archivo ES module.</li>
+                <li>Expón API simple vía atributos/propiedades; emite eventos personalizados (<code>this.dispatchEvent(new CustomEvent(...))</code>).</li>
+                <li>Accesibilidad: usa roles/aria adecuados; enfocable con teclado.</li>
+                <li>Evita dependencias globales y fugar estilos; usa Shadow DOM y <code>:host</code>.</li>
+                <li>Testea como cualquier elemento DOM (Playwright, Web Test Runner, Vitest + @web/test-runner).</li>
+            </ul>
+        </section>
+
+        <!-- ENLACES -->
+        <footer>
+            <strong>Referencias rápidas</strong> — MDN y especificaciones:
+            <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components" target="_blank" rel="noreferrer">Guía Web Components (MDN)</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define" target="_blank" rel="noreferrer">customElements.define (MDN)</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow" target="_blank" rel="noreferrer">Element.attachShadow (MDN)</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/template" target="_blank" rel="noreferrer">&lt;template&gt; (MDN)</a> &amp; <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/slot"
+                        target="_blank" rel="noreferrer">&lt;slot&gt; (MDN)</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements" target="_blank" rel="noreferrer">Using custom elements (MDN)</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%3Ahost" target="_blank" rel="noreferrer">:host (MDN)</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%3A%3Apart" target="_blank" rel="noreferrer">::part (MDN)</a>,
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%3A%3Aslotted" target="_blank" rel="noreferrer">::slotted (MDN)</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/CSSStyleSheet" target="_blank" rel="noreferrer">CSSStyleSheet / adoptedStyleSheets (MDN)</a></li>
+            </ul>
+        </footer>
+    </main>
+</body>
+
+</html>
