@@ -6,13 +6,7 @@ template.innerHTML = `
         margin: 1rem auto;
         max-width: 720px;
         }
-
-        h2 {
-        margin: 0 0 .5rem 0;
-        font-size: 1.25rem;
-        text-align: center;
-        }
-
+        h2 { margin: 0 0 .5rem 0; font-size: 1.25rem; text-align: center; }
         .cNoticia {
         display: grid;
         grid-template-columns: 1fr;
@@ -25,13 +19,11 @@ template.innerHTML = `
         transition: transform 800ms, background-color 800ms;
         background: #fff;
         }
-
         .cNoticia:hover {
         transform: scale(1.03);
         background-color: blueviolet;
         color: #fff;
         }
-
         .iNoticia {
         width: 200px;
         max-width: 100%;
@@ -62,4 +54,46 @@ class TempNoticia extends HTMLElement {
     }
 }
 
+class ComponenteIndividual extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+
+        const estilo = document.createElement('style');
+        estilo.textContent = `
+        .cParrafo { font-size: 1.5rem; color: lightgreen; }
+        .cImagen { width: 200px; cursor: pointer; }
+    `;
+
+        const p = document.createElement('p');
+        p.className = 'cParrafo';
+        p.textContent = 'Esto es un texto de componente Individual';
+
+        this.img = document.createElement('img');
+        this.img.className = 'cImagen';
+        this.img.src = 'https://images.seeklogo.com/logo-png/14/1/tool-logo-png_seeklogo-140867.png';
+        this.img.alt = 'Logo';
+
+        this.shadowRoot.append(estilo, p, this.img);
+        this._onImgClick = () => this.toggleImagen();
+    }
+
+    toggleImagen() {
+        this.img.hidden = !this.img.hidden;
+    }
+
+    eventoClick(mostrar) {
+        this.img.hidden = !mostrar;
+    }
+
+    connectedCallback() {
+        this.img.addEventListener('click', this._onImgClick);
+    }
+
+    disconnectedCallback() {
+        this.img.removeEventListener('click', this._onImgClick);
+    }
+}
+
 customElements.define('temp-noticia', TempNoticia);
+customElements.define('temp-individual', ComponenteIndividual);
